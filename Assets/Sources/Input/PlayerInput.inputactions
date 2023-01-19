@@ -1,0 +1,55 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Shooting",
+            "id": "b49a783c-66cd-43d9-95d3-4349287a90fb",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "74fa40b1-11a0-4f51-a82b-92ac57c91358",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "809b2e16-fd0b-4a8b-bf30-ba4344a233c6",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2778998f-da8a-45bb-9505-5290694fd4cc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": []
+        },
+        {
+            "name": "Touch",
+            "bindingGroup": "Touch",
+            "devices": []
+        }
+    ]
+}

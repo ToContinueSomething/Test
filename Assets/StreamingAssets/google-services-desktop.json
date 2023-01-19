@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "103632850087",
+    "project_id": "dakcy-b7f28",
+    "storage_bucket": "dakcy-b7f28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103632850087:android:33284bb0d1df8adca2df82",
+        "android_client_info": {
+          "package_name": "moipk.viontsgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103632850087-rm5o95d562rp6uns332ui5pijmo8lqq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcPhR0-pY6BCBZay3MvhkBDN2yuVEvNcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103632850087-rm5o95d562rp6uns332ui5pijmo8lqq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
