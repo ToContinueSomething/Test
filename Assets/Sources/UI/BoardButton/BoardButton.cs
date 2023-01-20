@@ -1,3 +1,4 @@
+using Sources.Data;
 using Sources.Infrastructure.Services.PersistentProgress;
 using Sources.Logic.Board;
 using UnityEngine;
@@ -10,15 +11,15 @@ namespace Sources.UI.BoardButton
         [SerializeField] private UIButton _uiButton;
         [SerializeField] private Image _image;
         
-        private BoardBase _board;
-        private IPersistentProgressService _progressService;
+        private Board _board;
+        private ScoreData _scoreData;
         
         protected BoardButton Button;
 
-        public void Construct(BoardButton button,BoardBase board,IPersistentProgressService progressService)
+        public void Construct(BoardButton button,Board board,ScoreData scoreData)
         {
             Button = button;
-            _progressService = progressService;
+            _scoreData = scoreData;
             _board = board;
         }
 
@@ -37,7 +38,7 @@ namespace Sources.UI.BoardButton
         protected virtual void OnUIButtonClick()
         {
             _board.StartFill();
-            _progressService.Progress.Reset();
+            _scoreData.Reset();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Sources.Infrastructure.Services.Input;
-using Sources.WebInit;
-using UnityEngine;
+﻿using Sources.WebInit;
 
 namespace Sources.Infrastructure.States
 {
@@ -14,11 +12,7 @@ namespace Sources.Infrastructure.States
             _gameStateMachine = gameStateMachine;
             _webPresenter = webPresenter;
         }
-
-        public void Exit()
-        {
-        }
-
+        
         public void Enter()
         {
            _webPresenter.StartWeb(EnterRegisterState);

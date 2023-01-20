@@ -1,14 +1,11 @@
 ﻿using Sources.Infrastructure.Factory;
-using Sources.Infrastructure.Services.PersistentProgress;
 using Sources.Logic;
 using Sources.UI.Factory;
-using UnityEngine;
 
 namespace Sources.Infrastructure.States
 {
     public class LoadLevelState : IPayLoadState<string>
     {
-        private const string InitialPoint = "InitialPoint";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
@@ -30,11 +27,6 @@ namespace Sources.Infrastructure.States
             _sceneLoader.Load(payLoad, OnLoaded);
         }
 
-        public void Exit()
-        {
-            
-        }
-
         private void OnLoaded()
         {
             _loaderCurtain.Hide();
@@ -51,9 +43,11 @@ namespace Sources.Infrastructure.States
         
         private void InitGameWorld()
         {
+            _gameFactory.CreateTimer();
             _gameFactory.CreateSpawners();
             _gameFactory.CreateBoard();
             _gameFactory.CreatePlayer();
+            _gameFactory.AddHandlers();
         }
     }
 }

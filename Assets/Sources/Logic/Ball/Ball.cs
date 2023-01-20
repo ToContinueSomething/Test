@@ -7,23 +7,18 @@ namespace Sources.Logic.Ball
     public class Ball : MonoBehaviour
     {
         private BallDestroyer _ballDestroyer;
-        private MeshRenderer _meshRenderer;
 
-        private const int _reward = 7;
+        private const int MinReward = 7;
 
-        public int Reward => _reward;
-        public Color Color { get; private set; }
+        public int Reward => MinReward;
 
         public event Action Destroyed;
 
-        private void Awake()
-        {
-            _meshRenderer = GetComponent<MeshRenderer>();
-            Color = _meshRenderer.material.color;
+        private void Awake() => 
             _ballDestroyer = GetComponent<BallDestroyer>();
-        }
 
-        private void OnEnable() => _ballDestroyer.Destroyed += OnDestroyed;
+        private void OnEnable() =>
+            _ballDestroyer.Destroyed += OnDestroyed;
 
         private void OnDestroyed()
         {

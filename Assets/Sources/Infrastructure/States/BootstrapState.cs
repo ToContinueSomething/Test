@@ -11,6 +11,8 @@ namespace Sources.Infrastructure.States
 {
     public class BootstrapState : IState
     {
+        private const string InitialScene = "Initial";
+        
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
@@ -27,7 +29,7 @@ namespace Sources.Infrastructure.States
         
         public void Enter()
         {
-            _sceneLoader.Load("Initial",EnterProgressState);
+            _sceneLoader.Load(InitialScene,EnterProgressState);
         }
 
         private void RegisterServices()
@@ -40,11 +42,7 @@ namespace Sources.Infrastructure.States
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()
                 ,_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
         }
-
-        public void Exit()
-        {
-        }
-
+        
         private void EnterProgressState()
         {
           _gameStateMachine.Enter<LoadProgressState>();

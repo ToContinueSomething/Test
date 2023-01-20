@@ -8,14 +8,9 @@
         {
             _gameStateMachine = gameStateMachine;
         }
-
-        public void Exit()
-        {
-        }
-
+        
         public void Enter()
         {
-         
         }
     }
 }

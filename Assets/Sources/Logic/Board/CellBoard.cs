@@ -1,20 +1,20 @@
-﻿using Sources.Infrastructure.Services.PersistentProgress;
-using Sources.Logic.Effect;
+﻿using Sources.Data;
 using UnityEngine;
 
 namespace Sources.Logic.Board
 {
     public class CellBoard : MonoBehaviour
     {
-        private const float Offset = 2f;
+        private const float Delay = 0.5f;
+        
         private Ball.Ball _ball;
-        private IPersistentProgressService _progressService;
+        private ScoreData _scoreData;
         public bool IsBusy { get; private set; }
 
-        public void Init(Ball.Ball ball, IPersistentProgressService persistentProgressService)
+        public void Init(Ball.Ball ball, ScoreData scoreData)
         {
             IsBusy = true;
-            _progressService = persistentProgressService;
+            _scoreData = scoreData;
             _ball = ball;
 
             SetBall();
@@ -42,9 +42,9 @@ namespace Sources.Logic.Board
 
         private void OnBallDestroyed()
         {
-            _progressService.Progress.AddScore(_ball.Reward);
+            _scoreData.Add(_ball.Reward);
             UnsubscribeBall();
-            Invoke(nameof(Reset), 0.5f);
+            Invoke(nameof(Reset), Delay);
         }
 
         private void UnsubscribeBall()
@@ -52,8 +52,7 @@ namespace Sources.Logic.Board
             _ball.Destroyed -= OnBallDestroyed;
             _ball = null;
         }
-
-
+        
         private void Reset() =>
             IsBusy = false;
     }

@@ -1,11 +1,11 @@
 ﻿using Sources.Data;
 using Sources.Infrastructure.Services.PersistentProgress;
-using UnityEngine;
 
 namespace Sources.Infrastructure.States
 {
     public class LoadProgressState : IState
     {
+        private const string GameScene = "Game";
         private readonly GameStateMachine _gameStateMachine;
         private readonly IPersistentProgressService _progressService;
 
@@ -23,13 +23,9 @@ namespace Sources.Infrastructure.States
                 (_progressService.Progress.InitialLevel);
         }
 
-        public void Exit()
-        {
-        }
-        
         private PlayerProgress GetNewProgress()
         {
-            return new PlayerProgress("SampleScene");
+            return new PlayerProgress(GameScene);
         }
     }
 }

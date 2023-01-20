@@ -11,6 +11,7 @@ namespace Sources.WebInit
     public class FirebaseRemoteActivator : MonoBehaviour
     {
         [SerializeField] private Text _errorText;
+        
         private Firebase.DependencyStatus _dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
         public string Url => FirebaseRemoteConfig.DefaultInstance.GetValue(FirebaseRemoteKeys.Key).StringValue;
 

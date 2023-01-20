@@ -1,10 +1,7 @@
 using Sources.Infrastructure.AssetManagement;
 using Sources.Infrastructure.Factory;
 using Sources.Infrastructure.Services.PersistentProgress;
-using Sources.Infrastructure.States;
-using Sources.Logic.Board;
 using Sources.UI.BoardButton;
-using UnityEngine;
 using Screen = UnityEngine.Device.Screen;
 
 namespace Sources.UI.Factory
@@ -32,14 +29,14 @@ namespace Sources.UI.Factory
             var  playButton = hud.GetComponentInChildren<PlayBoardButton>();
             var  restartButton = hud.GetComponentInChildren<RestartBoardButton>();
 
-            restartButton.Construct(playButton,_gameFactory.TimerBoard.transform.GetComponent<BoardBase>(), _progressService);
-            playButton.Construct(restartButton,_gameFactory.TimerBoard.transform.GetComponent<BoardBase>(), _progressService);
+            restartButton.Construct(playButton,_gameFactory.Board, _progressService.Progress.ScoreData);
+            playButton.Construct(restartButton,_gameFactory.Board, _progressService.Progress.ScoreData);
 
             var score = hud.GetComponentInChildren<Score>();
-            score.Construct(_progressService);
+            score.Construct(_progressService.Progress.ScoreData);
 
-            var timer = hud.GetComponentInChildren<Timer>();
-            timer.Construct(_gameFactory.TimerBoard);
+            var timer = hud.GetComponentInChildren<TimerView>();
+            timer.Construct(_gameFactory.Timer);
         }
     }
 }

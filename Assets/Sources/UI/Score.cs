@@ -1,4 +1,4 @@
-using Sources.Infrastructure.Services.PersistentProgress;
+using Sources.Data;
 using TMPro;
 using UnityEngine;
 
@@ -6,39 +6,45 @@ namespace Sources.UI
 {
     public class Score : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _score;    
+        [SerializeField] private TMP_Text _score;
         [SerializeField] private TMP_Text _bestScore;
-        
-        private IPersistentProgressService _progressService;
 
-        public void Construct(IPersistentProgressService progressService)
+        private ScoreData _scoreData;
+
+        public void Construct(ScoreData scoreData)
         {
-            _progressService = progressService;
-            
-            _progressService.Progress.ScoreChanged += OnScoreChanged;
-            _progressService.Progress.BestScoreChanged += OnBestScoreChanged;
-            
-            _score.text = "Current: " + progressService.Progress.Score.ToString();
-            _bestScore.text = "Best: " + _progressService.Progress.BestScore.ToString();
+            _scoreData = scoreData;
+
+            _scoreData.ValueChanged += OnScoreChanged;
+            _scoreData.BestValueChanged += OnBestScoreChanged;
+
+            SetScore(_scoreData.Value);
+            SetBestScore(_scoreData.BestValue);
         }
 
         private void OnDisable()
         {
-            if (_progressService != null)
+            if (_scoreData != null)
             {
-                _progressService.Progress.ScoreChanged -= OnScoreChanged;
-                _progressService.Progress.BestScoreChanged -= OnBestScoreChanged;
+                _scoreData.ValueChanged -= OnScoreChanged;
+                _scoreData.BestValueChanged -= OnBestScoreChanged;
             }
-        }
-
-        private void OnBestScoreChanged(int score)
-        {
-            _bestScore.text = "Best: " + score;
         }
 
         private void OnScoreChanged(int score)
         {
-            _score.text = "Current: " + score.ToString();
+            SetScore(score);
         }
+
+        private void OnBestScoreChanged(int bestScore)
+        {
+            SetBestScore(bestScore);
+        }
+
+        private void SetBestScore(int bestScore) =>
+            _bestScore.text = "Best: " + bestScore;
+
+        private void SetScore(int score) =>
+            _score.text = "Current: " + score;
     }
 }

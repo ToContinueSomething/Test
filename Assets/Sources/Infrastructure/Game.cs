@@ -5,13 +5,14 @@ using Sources.WebInit;
 
 namespace Sources.Infrastructure
 {
-  public class Game
-  {
-    public GameStateMachine StateMachine;
-
-    public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain,WebPresenter webPresenter)
+    public class Game
     {
-      StateMachine = new GameStateMachine(webPresenter,new SceneLoader(coroutineRunner), curtain, AllServices.Container);
+        public GameStateMachine StateMachine { get; private set; }
+
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, WebPresenter webPresenter)
+        {
+            StateMachine = new GameStateMachine(webPresenter, new SceneLoader(coroutineRunner), curtain,
+                AllServices.Container);
+        }
     }
-  }
 }
